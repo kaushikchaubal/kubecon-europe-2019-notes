@@ -24,6 +24,8 @@ At the end of this:
 * Reviewed GKE & non-GKE clusters and workloads through GKE Hub.
 * Reviewed workloads running in various locations across all your clusters.
 * Also, note the clusters are available inside GCP (https://console.cloud.google.com/kubernetes/list)
+* This is what the overall-structure will look like:
+<img width="961" alt="Screen Shot 2019-05-20 at 10 13 10" src="https://user-images.githubusercontent.com/808515/58024217-fbc28300-7b11-11e9-8fa9-0f634db74331.png">
 
 ### Notes:
 * Config-as-code: hybrid Anthos environment expressed in a secure on-prep code repo
@@ -56,8 +58,10 @@ At the end of this:
 * This is going to use the ingress gateway (which is a Istio concept)
 * Worth remembering that there are 'n' services meshes based on 'n' clusters
 * Expose only the services that needs to be used across clusters
-* Use 2 screenshots about how this looks like
-* Use 1 picture to give example about how the end-to-end communication is taking place
+* The microservices will be split across the two clusters as follows:
+<img width="1029" alt="Screen Shot 2019-05-20 at 10 48 53" src="https://user-images.githubusercontent.com/808515/58024700-19dcb300-7b13-11e9-814f-6a2b1e44ab1e.png">
+* Here is an example of how the communication works under-the-hood when a request comes in:
+<img width="1018" alt="Screen Shot 2019-05-20 at 11 08 25" src="https://user-images.githubusercontent.com/808515/58024701-1a754980-7b13-11e9-95ab-b3f14cdb2b9c.png">
 
 ### Lab: Step 6 from codelab. 
 
@@ -79,6 +83,10 @@ At the end of this:
 * Reviewed security suggestions for your services.
 * Inspected service level metrics and telemetry.
 * Defined and inspected Service Level Objectives.
+
+### Notes:
+* An example screenshot of the Cloud Service Mesh looks like:
+<img width="1661" alt="Screen Shot 2019-05-20 at 11 46 40" src="https://user-images.githubusercontent.com/808515/58024703-1a754980-7b13-11e9-83e6-0ff2c764b57a.png">
 
 ### Final notes:
 * Podcast for k8s: https://kubernetespodcast.com/ 
