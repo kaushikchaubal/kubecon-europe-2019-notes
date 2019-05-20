@@ -1,11 +1,12 @@
 ## Anthos Workshop
 
 ### Setup
-    * https://codelabs.developers.google.com/codelabs/anthos-workshop/#0
-    * 4 nodes running on GKE
-    * 4 nodes running on GCP (as normal k8s cluster)
 
-* Initial notes:
+* https://codelabs.developers.google.com/codelabs/anthos-workshop/#0
+* 4 nodes running on GKE
+* 4 nodes running on GCP (as normal k8s cluster)
+
+### Initial notes:
 * K8s is orchestration for your pods (in one cluster)
 * Anthos is orchestration for your cluster
 * Also worth chcking out traffic director: https://cloud.google.com/traffic-director/ 
@@ -24,7 +25,7 @@ At the end of this:
 * Reviewed workloads running in various locations across all your clusters.
 * Also, note the clusters are available inside GCP (https://console.cloud.google.com/kubernetes/list)
 
-Notes:
+### Notes:
 * Config-as-code: hybrid Anthos environment expressed in a secure on-prep code repo
 * You can use fluentd for captuting logging in the distributed system: https://logz.io/blog/fluentd-tutorial/ 
 * Useful to switch easily between different clusters: https://ahmet.im/blog/kubectx/ 
@@ -39,7 +40,7 @@ At the end of this:
 * Reviewed automated drift management.
 * Pushed changes to only select clusters.
 
-Notes:
+### Notes:
 * Isitio helps with smart networking as a service mesh
 * This can be done across multiple clusters
 * Isitio has a control plane and data plane
@@ -67,7 +68,7 @@ At the end of this:
 * Inspected Routing, Security & Service Discovery.
 * Migrated the remote, non-GKE workloads to cloud-based GKE.
 
-Notes:
+### Notes:
 * Cloud Service Mesh (alpha) provides tools and insights to help you manage your workloads, not just your infrastructure
 * GKE on Prem, GKE connect will be GA next month
 
@@ -81,6 +82,10 @@ At the end of this:
 
 ### Final notes:
 * Podcast for k8s: https://kubernetespodcast.com/ 
+
+-----
+
+## Writing Operators with Kubebuilder v2
 
 
 
