@@ -218,3 +218,152 @@ kubectl get crd
 * Use owner references to take care of delete for you
 * Ensure desired state with CreateOrUpdate
 * Set StateConditions to indicate health
+
+Note:
+* Worth reading about CRDS more: https://medium.com/velotio-perspectives/extending-kubernetes-apis-with-custom-resource-definitions-crds-139c99ed3477 
+
+-----
+
+## Lightening Talks
+
+Every talk is for 5 minutes
+Three sets of speaker
+
+### Talk 1: Understanding linux eBPF
+* K8s and Isitio features are because of ip tables (but they are also limited)
+* iptables will be replaces by eBPF (inspired from BPF introduced in eBPF)
+* eBPF - dynamic linux kernel 
+* Example implementations of using bcc: https://github.com/zoidbergwill/awesome-ebpf
+
+### Talk 2: Truly distributed applications on k8s reimagined
+* Native distributed system
+* Disadvantages of controllers in k8s
+    - designed to extend k8s itself
+    - Exposes large API surface
+* operators were introduced 
+    - Hides raw complexities of controllers
+* Disadvantages
+    - Still leaves large API surface area 
+    - Requires knowledge of k8s API and perator API
+* Requirements
+    - A smaller API surgace easier to reason about
+    - Complete abstraction of inner workingfs of k8s
+    - No assumption about k8s knowledge 
+* His work (uses split design)
+    - Co-ordinator & Worker
+    - Inspired by actor-like model
+* Steps
+    - Creator a coordinator
+    - Create a callback function
+    - Apply cluster operation
+    - Run the co-ordinator
+    - (same steps for worker)
+    - Deploy both the coordinator & worker
+
+### Talk 3: Unit Tests with go-client fake-cliend
+* A k8s client that will respond with the given objects
+* Part of k8s go-client
+* Implements the ClientSet.Interface
+* Repo: https://github.com/diazjf/fakeclient
+
+### Talk 4: K8s jobs and sidecar problem
+* Main job containers + Sidecar containers becoming popular (eg: Istio)
+* Problem: Job containers completed but sidecar containers never completed
+* Workaround: Shared volume communication 
+    - job writes a file
+    - sidecar reads the file to complete 
+    - sidecar signals complete
+* There is an enhacement request to get this natively
+
+### Talk 5: Is SRE good for you?
+* SLO, SLI, Error budgets
+* Free ebook: https://landing.google.com/sre/books/
+
+### Talk 6: Challenges from CI with k8s on bare-stack
+* kubespray: Deploy a Production Ready Kubernetes Cluster
+* Repo: https://github.com/kubernetes-sigs/kubespray
+* kubevirt: Building a virtualization API for Kubernetes
+* Repo: https://github.com/kubevirt/kubevirt
+* Reason for usage was they were migrating to barestack
+* Think about it as k8s on k8s
+
+### Talk 7: k8s and career development
+* N/A
+
+### Talk 8: How to use jupyter notebooks to gain insights about your clusters
+* Introspect a cluster
+* Lets look at 3 areas
+    - Log data gathering
+    - Data marshalling / ETL
+    - Visualise it
+* Stack used:
+    - Juptyer lab 
+    - k8s python client 
+    - sqllite 
+    - pandas (or bokeh)
+
+### Talk 9: When the command line is not enough
+* Improves user experience
+* Gets more OSS contributors
+* Complmenets your CLI
+* linkerd has a cli and a dashboard
+
+### Talk 10: Using Istio / Envoy for network request caching
+* £PICTURE£ talking about dream-world
+* £PICTURE£ talking about reality
+* Most of the logic in a stack is the same - only thing that changes is business logic!
+* Istio is k8s of networking
+* Can we use Isitio to solve 'App specific perfomance, security, resilience'? Yes!
+
+### Talk 11: Tips for CKA exam (Ceritified K8s exam)
+* CNCF sponsored: https://www.cncf.io/certification/cka/ 
+* Curriculum £PICTURE£
+    - Application Lifecycle Management 8%
+    - Installation, Configuration & Validation 12%
+    - Core Concepts 19%
+    - Networking 11%
+    - Scheduling 5%
+    - Security 12%
+    - Cluster Maintenance 11%
+    - Logging / Monitoring 5%
+    - Storage 7%
+    - Troubleshooting 10%
+* kubernetes.io is available during the exam
+* Get to know kubectl: https://kubernetes.io/docs/reference/kubectl/cheatsheet/ 
+* Another optiont to look at: https://github.com/cncf/curriculum/blob/master/CKAD_Curriculum_V1.14.1.pdf 
+
+### Talk 12: How to make sure pods are running with the latest config
+* Deployments know about ConfigMap, ConfigMap doesn't know about Deployments
+* £PICTURE£ shows how they connect all together
+* Wave wakes care of that: https://github.com/pusher/wave
+* £PICTURE£ shows how they connect all together with wave
+
+### Talk 13: How containers are like cookies
+* N/A
+
+### Talk 14: Managing Drivers with k8s
+* Deep learning web application will use a driver to make a syscall to the kernel
+* Drivers are usually installed through package managers
+* £PICTURE£ shows option 1
+* £PICTURE£ shows option 2
+* £PICTURE£ shows option 3
+* £PICTURE£ for future option
+
+### Talk 15: Slow starting containers
+* Two strategies:
+    - readinessProbe
+    - livenessProbe
+* Details: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ 
+* Strategy:
+    - long initial delay
+    - Allow failure during start-up
+
+### Talk 16: How to regain the trust of your users
+* booking.com started with Openshift
+* Openshift were abstracting too many features
+* Moved the control plane to baremetal
+
+### Talk 17: Cloud Native Wales
+* N/A
+
+-----
