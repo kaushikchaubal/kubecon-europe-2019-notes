@@ -422,14 +422,16 @@ This is an informal session where different financial services individuals about
 
 ### Talk 6: Expanding the Kubernetes Operator Community - Rob Szumski
 * K8s adoption phases
-    1. Stateless app
+    1. Stateless apps
     2. Stateful apps
     3. Dsitributed apps
 * Operators run your complex apps
     - Embed ops knowledge from the experts
-    - Operator Framework: https://github.com/operator-framework 
+    - Operator Framework: https://github.com/operator-framework/operator-sdk 
+    - Check out this article: https://commons.openshift.org/sig/OpenshiftOperators.html
 * Options to run postGreSQL
     - Docker
     - Cloud Database
     - Crunchy data (http://guincodes.blogspot.com/2018/06/using-crunchy-data-postgresql-operator.html) 
 
+------
