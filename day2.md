@@ -93,4 +93,26 @@
 
 ### Talk 5: Lucas Käldström & Nikhita Raghunath: Getting Started in the Kubernetes Community
 * 31,000+ unique k8s contributors till date
-* Diversity lunch, mentor-mentee sessions
+* Diversity lunch, mentor-mentee sessions\
+* Have a 'community-first' mindset i/e Community over product
+* "Culture eats strategy for breakfast" -- Peter Drucker
+* Community Groups
+    - Special Interest Groups
+    - Working Groups
+    - User Groups
+    - Committees
+* Great starting repo: https://github.com/kubernetes/community
+    - Look for [good first issue](https://github.com/search?q=org%3Akubernetes+org%3Akubernetes-sigs+org%3Akubernetes-incubator+org%3Akubernetes-csi+org%3Akubernetes-client+is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22&type=Issues)
+* Slack channel: http://slack.k8s.io/
+* All SIGs have
+    - Public meetings
+    - Summary on google docs
+    - Recording to 
+* Steps of being part of being contributions:
+    - Joining slack and public meetings
+    - KEP (k8s enhancement proposal)
+    - Member 
+    - Reviewer
+    - Approver
+    - Owner
+* 
