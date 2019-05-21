@@ -115,4 +115,63 @@
     - Reviewer
     - Approver
     - Owner
-* 
+
+------
+
+## GitLab Serverless workshop using Knative
+
+### Introduction
+* See  serverless-workshop.pdf
+* CNCF ecosystem is getting very complicated
+* Epic article: https://circleci.com/blog/its-the-future/ 
+* Repo: https://gitlab.com/gitlab-workshops/serverless-workshop 
+* It's complicated
+    - Create a cluster
+    - Install an app packager
+    - Install 2-3 systems on top of service
+    - Networking paradigm
+    - Finally get your app running!
+* Serverles:
+    - Event driven architecture
+    - Serviceful
+    - Fine grained pay as you go
+    - FaaS as processing between cloud services linked by events
+* Knative as a Solution!
+* Operator Frameworks
+    - Kubebuilder
+    - Operator Framework
+    - Metacontroller 
+* Serverless framework: https://serverless.com/framework/docs/getting-started/ 
+* What's happening under the hood?
+    - gitlab triggers the pipeline using the gitlab-si.yml
+        ```yaml
+            stages:
+            - deploy-function
+
+            deploy-hello-function:
+            stage: deploy-function
+            environment: test
+            image: gcr.io/triggermesh/tm:latest
+            before_script:
+                - echo $TMCONFIG > tmconfig
+            script:
+        - tm --config ./tmconfig deploy --wait; echo
+        ```
+    - This uses serverless.yml to under
+        ```yaml
+        service: functions
+        description: "Deploying functions from GitLab using Knative"
+
+        provider:
+        name: triggermesh
+
+        functions:
+        hello:
+            source: lab1/hello
+            runtime: https://gitlab.com/gitlab-workshops/workshop-resources/knative-lambda-runtime/raw/master/python-3.7/buildtemplate.yaml
+            description: "python Hello function with KLR template"
+            buildargs:
+            - DIRECTORY=lab1/hello
+            - HANDLER=hello.endpoint
+        ``` 
+------
