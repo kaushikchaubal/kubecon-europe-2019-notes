@@ -118,9 +118,9 @@
 
 ------
 
-## GitLab Serverless workshop using Knative
+## Hands-On: GitLab Serverless workshop using Knative
 
-### Introduction
+### Notes
 * See  serverless-workshop.pdf
 * CNCF ecosystem is getting very complicated
 * Epic article: https://circleci.com/blog/its-the-future/ 
@@ -175,3 +175,67 @@
             - HANDLER=hello.endpoint
         ``` 
 ------
+
+## Hands-On: Deployment of Stateful Workloads on Kubernetes
+
+### Agenda
+* [Slides](stateful-workloads-on-k8s.pdf)
+* Create a Cluster
+* Basic Stateful Workload Concepts
+* Dynamic Provisioning
+* Higher Level Workload Concepts
+* Kubectl
+* Common Debugging Techniques
+* Our Cassandra Demo App Hands-On
+* Other databases
+* Advanced Topics
+
+### Steps:
+1. Create a k8s cluster on GCP
+2. Create a pod, PersistentVolumeClaim, PersistentVolume (see £PICTURE£)
+3. Push it to GCP and see it work
+
+### Demos worth checking out:
+1. Cassandra demo: https://github.com/jsafrane/caas/ 
+2. MySQL: https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/
+3. PostgreSQL: https://github.com/CrunchyData/crunchy-containers 
+4. Mongo: https://codelabs.developers.google.com/codelabs/cloud-mongodb-statefulset/index.html?index=..%2F..index#0  (** worth trying out **)
+
+### Cloud-native databases
+* CockroachDB
+* FoundationDB
+* TiDB
+* Vitess
+* YugaDB
+
+------
+
+## Intro to Linkerd
+
+### What is Linkerd?
+* Only Service Mesh in CNCF project
+* 24+ months in production
+* Very active slack channel
+* Two flavours
+    - Linkerd 1.x
+    - Linkerd 2.x
+
+### Why use Linkerd?
+* Visibility - automatic golden metrics - success rates, latencies, throughput
+* Reliability - retys, timeouts, cicuit breaking, deadlines, request balancing
+* Security - Transparent mTLS, cert validation, policy
+* Goal - move visibility, reliability, security primitives into the infrastructure layer, out of the applicatino layer
+
+### Linkderd vs Istio?
+* This is driven from the goals defined in linkerd (specially linkerd 2.x)
+* Similar first principles, different design goals
+
+### Linkerd 2.x architecture
+* linkerd-proxy: which is the sidecar
+* contoller: main control plane
+* cli, web: to interact and view the service mesh
+* telemetry: prometheus, grafana
+
+### Articles worth reading:
+* Linkerd Community Guide to KubeCon EU 2019: https://buoyant.io/2019/04/23/linkerd-community-guide-to-kubecon-eu-2019/
+* Linkerd Benchmarks: https://linkerd.io/2019/05/18/linkerd-benchmarks/ 
