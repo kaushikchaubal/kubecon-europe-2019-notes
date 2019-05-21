@@ -6,4 +6,7 @@ This repo captures notes made by me about anything and everything that I attende
 
 Hopefully, these notes help understand the event and some of the discussions that happened in detail:
 1. [Day 1: May 20th 2019](day1.md)
+2. [Day 2: May 21st 2019](day2.md)
+3. [Day 3: May 22nd 2019](day3.md)
+4. [Day 4: May 23rd 2019](day4.md)
 
