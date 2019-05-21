@@ -234,7 +234,7 @@
 * linkerd-proxy: which is the sidecar
 * contoller: main control plane
 * cli, web: to interact and view the service mesh
-* telemetry: prometheus, grafana
+* telemetry: prometheus, grafana (this is temporary and so, you need to store it somewhere proper!)
 
 ### Articles worth reading:
 * Linkerd Community Guide to KubeCon EU 2019: https://buoyant.io/2019/04/23/linkerd-community-guide-to-kubecon-eu-2019/
@@ -243,3 +243,4 @@
 ------
 
 ## Hands-On: A day in the life of a cloud native application developer
+
