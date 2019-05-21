@@ -244,3 +244,192 @@
 
 ## Hands-On: A day in the life of a cloud native application developer
 
+Note: This workshop was full and so, details can be found [here](cloud-native-workshop.pdf)
+
+------
+
+## Laying the Foundation: Real World Kubernetes Deployment Patterns 
+
+### Landing Zone 
+* (where will you deploy your cluster)
+* Managed k8s
+    - Eg: AKS, EKS, GKE
+    - What if you want access to the control plane?
+* Distribution
+    - Eg: Openshift      
+* Roll your own
+    - Need deep insights
+    - There are certain things that you need to know
+
+### Landing Zone: Missteps
+* All-in with managed k8s
+    - Very ideal, not a panacea
+    - Costs associated with someone else managing your control plane
+* One-size fits all installers
+    - INfra is almost always snowflakey
+    - Are you comfortable with supporting this?
+
+### Principles
+* Yesterday, today and tomorrow
+    - Eg: Ingress controller can be nginx today, something else tomorrow
+    - Check out: https://itnext.io/kubernetes-ingress-controllers-how-to-choose-the-right-one-part-1-41d3554978d2 
+* Back to the basics
+* Enable your stakeholders
+    - Give log and monitoring access 
+
+### Principles: Missteps
+* Solving problems you don't yet have
+    - New solutions appearing daily
+    - More solutions... more porblems
+    - eg: Service Mesh... conceptually, it makes sense! But do you have that problem today?
+* Perfect is the enemy of done
+    - Wasting cycles "guessing" about requirements
+    - Time could be used gaining operational experience
+    - In other words, narrow your scope!
+
+### Bedrock
+* (there are some thing that you won't change)
+* Container Networking
+* Persistent Storage
+* Connectivity 
+
+### Bedrock: Missteps
+* Trading "battel-tested" for "cutting-edge"
+    - Slow down a little
+* open source is not free... it requires diligence
+    - Community health
+    * Release cycles
+    * Github stars (most important)
+
+### Security 
+* (over obscurity)
+* Multi-team? Multi-tenant?
+* Consistent AuthZ / AuthN
+* Policies
+* Backup and restore
+
+### Security: Missteps
+* One cluster to rule them all
+    - Hard isolation is hard
+* Not getting security involved early
+    - This journey is for everyone 
+* Adding security "later"
+    - Not easy to bolt-on
+
+### Scale out
+* (but you are likely not Google, Amazon or MSFT)
+* Multi-cluster mindset
+* That 'F' word: Federation
+* Resources
+
+### Scale out: Missteps
+* Scaling out MEGA clusters
+    - Hard to manage over time
+    - Putting all your eggs in one basket
+    -consider smaller clusters you can stamp out with ease
+
+### Embrace
+* (and extend)
+* Highly extensible
+* Plan on extending
+* Operators (worth reading: https://github.com/kubeflow/tf-operator/issues/300)
+
+### Embrace: Missteps
+* Extending k8s non-natively
+    - Ignoring core k8s concepts
+    - Building out fragile flows
+
+------
+
+## Birds of a Feather: Financial Services User Group - Cheryl Hung, CNCF
+
+This is an informal session where different financial services individuals about there concerns
+
+### Get involved:
+* https://github.com/cncf/financial-user-group 
+* financial-user-group@lists.cncf.io
+* Monthly calls on 4th Tuesday, 14:00 UTC
+* chung@linuxfoundation.org 
+
+------
+
+## Keynote
+
+### Talk 1: Welcome Remarks - Janet Kuo
+
+### Talk 2: Democratising Service Mesh on Kubernetes - Gabe Monroy
+* Smart endpoints, dumb pipes - this has worked for the past 25 years
+* Smarter pipes 
+    - Instio
+    - Consul (HashiCorp)
+    - Linkerd - lightweight
+* Introducing Service Mesh Interface (SMI)
+    - Policy (how to make it easy e.g mTLS)
+    - Telemetry (how to capture key metrics)
+    - Routing (shift and weight traffic)
+* Note Ingress does not implment, it is only an interface which is implemented by
+    - Nginx
+    - Trafik
+    - HaProxy
+* Similarly, SMI is only an interface that needs to be implements
+* Why SMI
+    - Get started quickly
+    - Simpler is better
+    - Ecosystem friendly
+
+### Talk 3: K8s Project Update - Janet Kuo
+* History
+    - 2003: Borg (Predecessor of k8s)
+    - 2006: Process Containers (cgroups - Linux Control Groups)
+    - 2008: Containers
+    - 2009: Omega (next-gen Borg)
+    - 2013: Docker open-source, Project 7 (open source container orchestrator)
+    - 2014: Kubernetes announced at DockerCon
+    - 2015: CNCF & 1st KubeCon & Kubernetes 1.0
+    - 2016: SIG (System Interest Group) & KubeCon EU & Industry Aoption in Prod
+    - 2017: De Facto Standard (Native Kubernetes support), introduced features like CRDs, RBAC 
+    - 2018: Graduation from CNCF & First KubeCon in Asia
+    - Today: #2 PRs across GitHub, #4 Issues & authors
+* What's in 1.14?
+    - Windows nodes GA (https://kubernetes.io/blog/2019/03/25/kubernetes-1-14-release-announcement/)
+    - Local PV GA
+* Future
+    - Extensibility: More platforms & frameworks, CRD still beta
+    - Scalability: Not a simle number, not independent, bottlenecks
+        * Node Status is expensive. Node Status: 300-600MB/min for a 5000 nodes cluster. This can break etcd. This needs to be solved.
+    - Reliability: Cascading failures. Bad pods kill nodes. Eventually kill the cluster
+        * Workaround is to hide signal. This needs to be solved.
+
+### Talk 4: Recursive Kubernetes: Cluster API and Clusters as Cattle - Joe Beda
+* kube-up.sh alternatives
+    - https://stackoverflow.com/questions/41180673/kube-up-sh-is-deprecated-what-is-the-alternative 
+    - Bootstrapping: kubeadm (assumption is that you have some computers and you can bootstrap a k8s cluster)
+    - Provisioning: cluster API (using CRDs to extend kubernetes to manage machines)
+        * 'Cluster'
+        * 'Machine' - whic is under 'Cluster'
+        * also, 'MachineSet' and 'MachineDeployment
+    - SIG Cluster Lifecycle
+
+### Talk 5: Reperforming a Nobel Prize Discovery on Kubernetes - Ricardo Rocha & Lukas Heinrich
+* CERN
+    - Fundamental research - about physics (eg: antimatter research)
+    - Creation of web
+* Stack
+    * GCP Cluster on GKE
+    * Job Results
+    * Jupyter for interactive visualisation
+* Re-created the higgs boson particle detection simulation
+
+### Talk 6: Expanding the Kubernetes Operator Community - Rob Szumski
+* K8s adoption phases
+    1. Stateless app
+    2. Stateful apps
+    3. Dsitributed apps
+* Operators run your complex apps
+    - Embed ops knowledge from the experts
+    - Operator Framework: https://github.com/operator-framework 
+* Options to run postGreSQL
+    - Docker
+    - Cloud Database
+    - Crunchy data (http://guincodes.blogspot.com/2018/06/using-crunchy-data-postgresql-operator.html) 
+
