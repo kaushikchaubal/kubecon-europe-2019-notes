@@ -239,3 +239,7 @@
 ### Articles worth reading:
 * Linkerd Community Guide to KubeCon EU 2019: https://buoyant.io/2019/04/23/linkerd-community-guide-to-kubecon-eu-2019/
 * Linkerd Benchmarks: https://linkerd.io/2019/05/18/linkerd-benchmarks/ 
+
+------
+
+## Hands-On: A day in the life of a cloud native application developer
