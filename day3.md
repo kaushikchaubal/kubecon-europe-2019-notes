@@ -323,7 +323,92 @@ _output/bin/kubectl version // check timestamp
 * Centrally maintained
 * Language agnostic
 
+### General connectivity 
+* In mesh
+* Out of mesh
+    - Ingress Gateway
+    - Egress Gateway
 
+### Connecting to the old world
+* Mesh expansion (based on Istio 1.0.x)
+* Install Envoy on hosts and connec to Istio control plane
+* mTLS: Universal transport encryption and authentication
+    - Unfiromly configured with K8s resourves
+* Central observability by Istio telemetry
+
+### Problems with Operating Istio
+* Security concerns
+    - High privileges for control place components
+        * run as root
+        * writing root filesystem
+    - High privleges for admins and serviceaccounts (to use iptables)
+        * net_admin capabilities
+        * run as root
+    - Same problem with book into sample application
+* Sidecar injection
+    - Problematic order of automatic sidecar injection vs PRP evaluation
+
+### Problems with Mesh Expansion
+* Connectivity to control place
+* Telemetry / Policy
+* Inbound (in-mesh) calls
+* mTLS setup
+
+### Service Mesh 'lite'
+* Mimic mTLS with custom proxy setup and static certificates
+* Automatic sidecar injection as part of deploymeny pipeline
+
+### Istio 1.1 to the resue
+* Good
+    - Control plane connection
+    - Outbound expansion
+    - mTLS setup
+    - Istio-CNI / Security concerns
+* Bad 
+    - Inbound expansion
+    - Automatic sidecar injection
+* Unsure
+    - Documentation complex
+    - Documentation partially inconsistent
+    - Multi-tenancy unclear
+
+-------
+
+## Strategies to "Kubernetify" Legacy Applications - Sai Vennam
+
+Note: 
+* IBM electron app for visualising kubectl: https://github.com/IBM/kui 
+* Quickly create dynamic end-to-end REST APIs: https://loopback.io/ 
+
+1. Lift and Shift
+* Pro: Speed to market
+* Con: Technical Debt
+* Strategy:
+    - Containerize (or Dockerize it!) and Kubernetify 
+    - Extract Config (Create yaml file)
+    - Create Persistence for Stateful Apps
+* Add £PICTURE£ from PDF
+
+2. Innovate
+* Pro: New end-user experiences
+* Con: Legacy architecture restrictions
+* Strategy:
+    - Create new cloud-native apps
+    - Build off existing workloads and apps
+    - Identify bottle-necks
+* Add £PICTURE£ from PDF
+
+3. Deconstruct
+* Pro: Performant modern apps
+* Con: Time consuming
+* Strategy:
+    - Identify sercice to deconstruct
+    - Create GLUE code (APIs) to modernize legacy apps
+    - Refactor and elimate legacy apps
+* Add £PICTURE£ from PDF
+
+
+-------
 
 
 
