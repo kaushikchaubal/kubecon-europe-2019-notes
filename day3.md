@@ -407,8 +407,35 @@ Note:
     - Refactor and elimate legacy apps
 * Add £PICTURE£ from PDF
 
+-------
+
+## Tracing is More Than Traces: The Insights in Trace Aggregates - Daniela Miao
+
+### Three Pipes of Observability
+* Logs
+* Traces
+* Metrics
+
+## Tracing
+* Instrumenting your application: https://opentracing.io/docs/best-practices/instrumenting-your-application/ 
+* Trace aggregate analysis
+    - Correlating ANY characteristic of the system with metrics
+    - Latency anomalies in context of service infrastructure (99.9% example)
+    - Critical path analysis => resource contention (bottleneck!)
+* Resource contention
+    - The critical path is the “where” but rarely the “why”
+    - “Why”: nearly all latency issues are due to contention
+* “backtrace” & aggregate once you know the mutex contention
+* OpenTelemetry
+    - Aggregates => Insights
+    - You need lots and lots and lots of traces, without being locked in
+    - Enables robust, portable telemetry to be a built-in feature of cloud-native software
+    - It is the next major version of both OpenTracing and OpenCensus => backwards compatible with both
+* Key summary:
+    - Trace Aggregates!
 
 -------
+
 
 
 
