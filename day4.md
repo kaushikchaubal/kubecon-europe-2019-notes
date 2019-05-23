@@ -177,3 +177,57 @@
 ------
 
 ## Repeatable Deployments with Kubernetes, Helm & Bazel - Rohan Singh
+
+### Bazel
+* Overview: https://docs.bazel.build/versions/master/bazel-overview.html 
+* Getting Started: https://docs.bazel.build/versions/master/getting-started.html
+* Java Tutorial: https://docs.bazel.build/versions/master/tutorial/java.html 
+
+### How is this different from using Docker build?
+* Determinism
+* Instead of writing a docker file, you will write a bazel build file
+* You don't need to have a docker image running
+* You can use the output of one target to the input of another target
+* You an build and deploy to multiple kube clusters
+
+### Bazel Rules
+* A rule defines a series of actions that Bazel should perform on inputs to get a set of outputs
+* container_image
+* java_library
+* nodejs_binary
+* sh_test
+* They are primarily for advanced users (https://docs.bazel.build/versions/master/skylark/rules.html) 
+* Local Kubernetes development with no stress. Checkout: https://github.com/windmilleng/tilt
+
+------
+
+## Let's Try Every CRI Runtime Available for Kubernetes. No, Really! - Phil Estes
+
+### Background: OCI
+* OCI (open container interface)
+* Container runtimes: docker, containerd, cri-o, kata, firecrasker, gVisor, Nabla, singularity
+* Registries: DockerHub, OSS distribution process, Qya
+
+### K8s & CRI responsibilities
+* K8s
+    - K8s
+* CRI
+    - Pod conainer lifecycle
+    - Image management
+    - Status
+    - Container lifesyslt
+
+### What we plan to use?
+* Docker
+* containerd
+* Firecracker
+* Kata
+* gVisor
+* cri-o
+
+Note: Useful command
+```
+kubectl get no -o wide
+```
+
+-------
