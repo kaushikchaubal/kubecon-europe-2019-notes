@@ -231,3 +231,74 @@ kubectl get no -o wide
 ```
 
 -------
+
+## How Intuit Does Canary and Blue Green Deployments with a K8s Controller - Daniel Thomson & Alex Matyushentsev
+
+### k8s in Intuit
+120 clusters (200-300 nodes)
+3200 nodes
+1300 deploys a day - using standard deployment object
+
+### Where are they now?
+Recreate - YES 
+Rolling update - YES
+
+### GitOps methods
+* What? Git as single source of truth
+* Why?
+    - observability
+    - Auditability
+* How?
+    - Argo CD
+
+### How to implement blue-green/ canary using GitOps?
+* No built-in support for vcanary in k8s
+* GitOps is declartive, Canary are imperative
+* Integrate with CI tools
+
+### Attempt 1: Jenkins scripting
+* Did not fit the GitOps model
+* Not idempotent
+* Extremely brittle (lots of assumptions and edge cases)
+* Jenkinds requires k8s credentials to deploy
+* Painful to setup
+
+### Attempt 2: deployment hooks
+* Still not idempotent and not transparent
+* Requires a lot of work to start using it
+* Sill not following our GitOps model
+
+### Atetmpt 3: Custom Controller
+* Condifies the deployment orchestration in the controller
+* GitOps friendly (idempotent)
+* Runs inside the k8s cluster
+* Easy adoption and migration from deployments
+* Feature parity with deployments
+* This was the basics of Argo rollouts design considerations
+
+### Argo Rollouts - how?
+* Github: https://github.com/argoproj/argo-rollouts 
+* handles ReplicaSet creation, scaling and deletion
+* Single desired state as a POd spac
+* Support manual and automated promotions
+* Integrates with HPA
+
+### Blue-Green Strategy
+* Manages an active and preview services selector to provide a service level cutover
+* Sizing control over preview environment 
+* Manual or automatic promotion
+
+### Canary Strategy
+* Declarative Promotion
+* No Service modification
+* Traffic split based on replica ratio between bersions of an application
+* Superset of rolling update strategy
+
+### Demo
+* https://github.com/alexmt/rollouts-demo-deployment 
+* Also worth going through: https://argoproj.github.io/ 
+
+### What's next?
+* Service Mesh integration
+* Decision-based Promotion CRD
+* A/B testing, experimentation strategies
