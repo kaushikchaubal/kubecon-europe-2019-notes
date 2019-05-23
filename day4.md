@@ -16,6 +16,7 @@
 * https://github.com/kubernetes-sigs 
 * https://github.com/kelseyhightower/kubernetes-the-hard-way 
 * https://kubernetes.io/blog/2017/11/kubernetes-easy-way/ 
+* https://www.katacoda.com/courses/kubernetes 
 
 ### Session 3
 * https://github.com/helm/charts 
@@ -111,3 +112,68 @@
         * Ok log: https://github.com/oklog/oklog
         * kubctl logs
         * Grafana loki: https://github.com/grafana/loki (Like Prometheus, but for logs)
+
+------
+
+## Testing your K8s apps with KIND - Benjamin Elder & James Munnelly
+* Big focus on extensions and controllers
+
+### Unit Tests
+* Typically make use of the fake clitn
+* In-memory implementation of apiserver/client
+* Caveats
+    - Great for simple things, but lots of ca
+    - Race and timing issues not surfaced
+    - No other contollers running
+
+### Integration tests
+* Kubebuilder / controller-runtime use this approach a lot
+* Run etcd + apiserver (optionally controller-manager)
+* Why?
+    - Admision Control
+    - Timing issues
+
+### End to end tests
+* Start a full kubernetes cluster, run the application and codify expected results
+* Gives us the ultimate flexibility
+* Black box testing (we don't assume implementation) - performance test
+* But this can be slow and/or expensive
+* Most PRs on k8s take about 1 hour long
+
+### Why end-to-end tests?
+* Certain edge cates that are only picked up in a real environment
+* Kubernetes has a lot of controller, the way these inter-op is really important
+* 'Gihting' can cause massive issues for a level based system
+
+### KIND
+* Users Docker containers to simulate nodes
+* Fast and lightweight
+* Steps:
+    1. Boot cluster
+        ```
+        kind create cluster
+        ```
+    2. Build yor application
+    3. Sideload app images (optional)
+        ```
+        kind load docker-image myapp:latest
+        KUBECONFIG = $(king get kbeconfig)
+        ```
+    4. Run tests!
+
+### Running in CI
+* Kind can be used on many different CI platforms
+* CircleCI and Travis currently documented
+
+### Other ways to run kind
+* kind as a library - no more bash!
+
+### Container runtimes (OCI (Open Container Initiative))
+* Docker
+* Rkt (https://coreos.com/rkt/) 
+* ContainerD (https://containerd.io/)
+* Worth reading: https://medium.com/cri-o/container-runtimes-clarity-342b62172dc3 
+
+------
+
+## Repeatable Deployments with Kubernetes, Helm & Bazel - Rohan Singh
