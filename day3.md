@@ -201,6 +201,8 @@ menues... view/item/context...
 ```
 * Run (using F5)
 
+Note: Check out https://github.com/Azure/vscode-kubernetes-tools-api
+
 -----
 
 ## The Story of Why We Migrate to gRPC and How We Go About It - Matthias Grüter

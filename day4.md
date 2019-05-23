@@ -302,3 +302,68 @@ Rolling update - YES
 * Service Mesh integration
 * Decision-based Promotion CRD
 * A/B testing, experimentation strategies
+
+------
+
+## Istio on Knative Lessons Learned: How Istio is Fit for Serverless Platform - Ying Chun Guo & Iris Ding
+
+### Serverless and Knative
+* Stateless
+* Event-driven
+* Auto-scaled / Scale-to-zero
+* Short lived
+* Reduced cost
+* Faster time to market
+* Serverless options
+    - Knative
+    - OpenWhisk
+    - Kubeless
+    - OpenFaaS
+* 3 features that knative gets kubernetes
+    - Eventing
+    - From sourve to services (Knative serving)
+    - "0 to n" scaling 
+
+### Service Mesh and Istio
+* What is a service mesh?
+    - provides transpartent network
+    - Language independent network 
+    - Connecting, observing, securing and controlling the connectivity between services
+* Istio - open service mesh platform
+    - Connect: Traffic control, discovery, load balancing, resiliency
+    - Observe: Metrics, logging, tracing
+    - Secure (mTLS, AuthN, AuthZ) of service-to-service communication
+    - Control: Policy enforcement
+* Mixer - Intermediation layer between the Istio components as well as Istio-based services
+* Galley - configuration management services
+* Citadel - to upgrade unencrypted traffic in the service mesh
+* Pilot - traffic management
+* Istioctl - Istio CLI
+
+### Knative basic concepts
+* Service - manages the lifecycle of app
+* Configuration - manages history of app
+* Revision - a snapshot of your app 
+* Route - endpoint and network traffic management
+
+### Benefits of Istio on Knative
+* Istio taking care of Service Mesh
+    - Traffic control
+    - Secure services access
+    - Telemetry
+* Makes knative focus on serverless
+
+### Costs of Istio on Knative
+* Choice of Istio installation (since it is customisation)
+    - Full Istio
+        * with sidecar using init-container
+    - Full Istio without CNI plugin
+        * with sidecar using CNI plugin (instead of init-container)
+    - Full Istio without Policy
+        * Policy disabled
+    - Minimal Istio
+        * Only Ingress gateway and Pilot
+        * No sidecar!
+        * This takes only 1.6s to start
+
+-----
