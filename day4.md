@@ -367,3 +367,32 @@ Rolling update - YES
         * This takes only 1.6s to start
 
 -----
+
+## Fool-Proof Kubernetes Dashboards for Sleep-Deprived Oncalls - David Kaltschmidt
+
+### On-call
+* Good on-call is debugging and follow-up, improving things for the rest
+* Bad on-call is mostly incident response where every minute counts
+
+Side Note: Check out https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/ 
+
+### Dashboarding Maturity Model
+* Low 
+    - no strategy
+    - no version control
+    - browsing for dashboard
+* Medium 
+    - Managing use of methodical dashboards
+        * USE method for resources (http://www.brendangregg.com/usemethod.html)
+        * RED method for services (https://www.youtube.com/watch?v=9dRSYjBPaZM)
+    - Using template variables 
+    - Hierarchical dashboards
+        * Summary views with aggregate queries
+        * Queries have breakdown by next level
+        * Tree structure reflecting the k8s hierarchies
+    - Directed browsing
+        * Most dashboards should be linked to by alerts
+    - Version controlled dashboard sources
+* High - Optimizing use, consistency by design 
+    - Use of mixins or other peer-reviewed templates
+        * https://www.youtube.com/watch?v=GDdnL5R_l-Y 
